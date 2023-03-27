@@ -1,0 +1,60 @@
+.favorite img {
+  height: 16px;
+  width: 16px;
+}
+
+.list-item-cook-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-item-cook-time img {
+  height: 16px;
+  width: 16px;
+}
+
+a {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-decoration: none;
+}
+
+.list-item-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
+  text-align: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  color: black;
+}
+
+.food-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  width: 200px;
+}
+
+.food-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 30px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+.origins {
+  margin: 0 0.2rem;
+  padding: 0.2rem 2rem;
+  background-color: rgb(215, 215, 215);
+  border-radius: 5rem;
+}
+
+.price {
+  color: green;
+}

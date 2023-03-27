@@ -1,0 +1,8 @@
+<!-- Search Form -->
+
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <input class="search-input" type="text" formControlName="searchTerm" placeholder="Search..."><span><button
+      class="search-button" type="submit">Search</button></span>
+  <button class="btn btn-primary reset-button" type="button" (click)="onReset()">Reset Search</button>
+</form>
+<hr>

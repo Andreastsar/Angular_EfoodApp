@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3" *ngIf="!isLoading">
+      <h3>{{!isLoginMode? 'Create New Account': 'Please Sign In'}}</h3>
+
+      <div *ngIf="!isLoginMode" class="sign-in-helper">
+        <p class="bg bg-success">You already own an account? <a style="cursor: pointer" type="button"
+            (click)="switchMode()">Sign
+            in</a></p>
+      </div>
+
+      <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+
+        <!-- Name -->
+        <div class="form-group" *ngIf="!isLoginMode">
+          <label for="name" class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="Enter Your Full Name Here"
+              formControlName="name">
+            <p class="alert alert-danger" *ngIf="!loginForm.get('name').valid && loginForm.get('name').touched">
+              Invalid name, please enter a valid name!</p>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="form-group" *ngIf="!isLoginMode">
+          <label for="address" class="col-sm-2 control-label">Address</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="address" placeholder="Address" formControlName="address">
+            <p class="alert alert-danger" *ngIf="!loginForm.get('address').valid && loginForm.get('address').touched">
+              Invalid address, please enter a valid address!</p>
+
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
+            <p class="alert alert-danger" *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">
+              Invalid email, please enter a valid email!</p>
+
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password" class="col-sm-2 control-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+            <p class="alert alert-danger" *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
+              Invalid input, please enter a correct value!
+            </p>
+          </div>
+        </div>
+
+        <!-- Button SignIn -->
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary"
+              [disabled]="!loginForm.get('password').valid || !loginForm.get('email').valid">{{!isLoginMode? 'Register':
+              'Sign in'}}</button>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Error Message -->
+        <div class="alert alert-danger" *ngIf="error">
+          <p>{{error}}</p>
+        </div>
+
+        <!-- Succesfully Registered -->
+        <div class="alert alert-info" *ngIf="userRegistered">
+          <p>You have succesfully registered! Please Login!</p>
+        </div>
+
+        <!-- Info -->
+        <div class="alert alert-warning" style="text-align: center;">
+          <h4>The default username and password is :</h4>
+          <p>Username: <strong>test2@test.com</strong></p>
+          <p>Password: <strong>12345</strong></p>
+          <hr>
+          <p>You can login with default account or create a new one!</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="col-md-6 col-md-offset-6" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</div>

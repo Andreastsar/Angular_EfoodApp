@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <!-- Logo -->
+    <div class="navbar-header">
+      <a class="navbar-brand">E-Food App</a>
+    </div>
+
+    <!-- Links -->
+    <div class="navbar-default">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active" class="dropdown" app-menu-dropdown *ngIf="isAuthenticated">
+          <a style="cursor: pointer;" class="dropdown-toggle">{{currentUser.name}} <span><svg class='fontawesomesvg'
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path
+                  d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+              </svg></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/profile">Profile</a></li>
+            <li><a routerLink="/orders">Orders</a></li>
+          </ul>
+        </li>
+        <li routerLinkActive="active"><a routerLink="/cart" *ngIf="isAuthenticated">Cart <span class="cart-badge"
+              *ngIf="cart.items.length >= 1">{{cart.items.length}}</span></a></li>
+        <li routerLinkActive="active" *ngIf="!isAuthenticated"><a routerLink="/login">Login</a></li>
+        <li *ngIf="isAuthenticated"><a routerLink="/home" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

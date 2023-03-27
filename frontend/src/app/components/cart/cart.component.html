@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+
+    <!-- Cart items box -->
+    <div class="col-md-9">
+      <div class="cart-items" *ngIf="cart.items.length >= 1">
+        <h3>Your Cart</h3>
+
+        <ul class="list-group">
+          <li *ngFor="let cartItem of cart.items" class="list-group-item clearfix">
+            <div class="col-md-4">
+              <p>{{cartItem.food.name}}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Qty: <strong>{{cartItem.quantity}}</strong>
+              </p>
+            </div>
+            <div class="col-md-2"><button type="button" class="quantity-button dec"
+                (click)="onDecreaseQuantity(cartItem.food.id)">-</button> | <button type="button"
+                class="quantity-button inc" (click)="onIncreaseQuantity(cartItem.food.id)">+</button>
+            </div>
+            <div class="col-md-2">
+              <p>subTotal: <strong>{{cartItem.price}}$</strong></p>
+            </div>
+            <div class="col-md-2"><button type="button" class="btn btn-danger"
+                (click)="onRemoveICartItem(cartItem.food.id)">Remove</button>
+            </div>
+          </li>
+        </ul>
+
+        <button type="button" class="btn btn-danger" (click)="onClearCart()">Clear Cart</button>
+      </div>
+    </div>
+
+    <!-- Checkout box -->
+    <div class="col-md-3">
+      <div class="checkout-box" *ngIf="cart.totalPrice > 0">
+        <h3>Summary</h3>
+        <p>Total Order Items: <strong>{{cart.totalCount}}</strong></p>
+        <h4><strong>Checkout: {{cart.totalPrice}}$</strong></h4>
+        <button type="button" class="btn btn-success"><a routerLink="/checkout">Proceed to Checkout</a></button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Empty cart message -->
+  <div class="row" *ngIf="cart.items.length < 1">
+    <div class="col-md-8 col-md-offset-2 empty-cart-message">
+      <h4>Your cart is empty! Please add products to your cart!</h4>
+      <button type="button" class="btn btn-danger"><a routerLink="/home">Back to Home</a></button>
+    </div>
+  </div>
+</div>

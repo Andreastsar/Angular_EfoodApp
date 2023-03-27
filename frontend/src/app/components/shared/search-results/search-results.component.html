@@ -1,0 +1,8 @@
+<div class="row" *ngIf="foods.length >= 1">
+  <div class="col-md-4 grid-list-item" *ngFor="let food of foods">
+    <app-food-list-item [food]="food"></app-food-list-item>
+  </div>
+</div>
+
+<p class="alert alert-info" *ngIf="foods.length < 1"> No products found! Try a different product, or make sure you have
+  provided a correct name!</p>

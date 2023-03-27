@@ -1,0 +1,32 @@
+<a routerLink="/products/{{food.id}}">
+  <!-- Name -->
+  <div class="food-image-container">
+    <img class="food-image" [src]="food.imageUrl" [alt]="food.name">
+  </div>
+  <div class="list-item-details">
+    <div><strong> {{food.name}}</strong></div>
+
+
+    <!-- Footer -->
+    <span *ngFor="let origin of food.origins" class="origins">
+      {{origin}}
+    </span>
+
+    <!-- Cook Time -->
+    <div class="list-item-cook-time">
+      <span><img src="../../../../../assets/clock-time.svg" alt=""></span>
+      <span>{{food.cookTime}}'</span>
+    </div>
+
+    <!-- Price -->
+    <p class="price">
+      {{food.price | currency}}
+    </p>
+
+    <!-- Favorite -->
+    <div class="favorite">
+      <img src="../../../../../assets/favorite-empty.svg" alt="heart-icon" *ngIf="!food.favorite">
+      <img src="../../../../../assets/favorite-filled.svg" alt="heart-icon" *ngIf="food.favorite">
+    </div>
+  </div>
+</a>

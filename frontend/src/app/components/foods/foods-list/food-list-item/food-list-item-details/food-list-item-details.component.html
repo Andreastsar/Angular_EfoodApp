@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-md-offset-2">
+      <div class="card-details">
+        <div class="food-item-details-image"><img [src]="foodItem.imageUrl" alt="{{foodItem.name}}"></div>
+        <div class="food-item-details">
+          <h2>{{foodItem.name}}</h2>
+          <span class="origins" *ngFor="let origin of foodItem.origins">
+            {{origin}}
+          </span>
+          <p>Time to cook ~ {{foodItem.cookTime}} minutes!</p>
+          <p class="food-item-price">Price: <strong style="color: rgb(0, 140, 0)">${{foodItem.price}}</strong></p>
+          <img class="logo" src="../../../../../assets/favorite-empty.svg" alt="heart-icon" *ngIf="!foodItem.favorite">
+          <img class="logo" src="../../../../../assets/favorite-filled.svg" alt="heart-icon" *ngIf="foodItem.favorite">
+          <button type="button" class="btn btn-danger btn-lg" (click)="addToCart(foodItem)">Add To Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
