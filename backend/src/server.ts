@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import productsRoutes from "./routes/products.routes";
 import usersRoutes from "./routes/users.routes";
+import orderRoutes from "./routes/orders.routes";
 import dotenv from "dotenv";
 import mongoose, { ConnectOptions } from "mongoose";
 
@@ -44,6 +45,9 @@ app.use("/api/products", productsRoutes);
 
 // Users routes
 app.use("/api/users", usersRoutes);
+
+// Order routes
+app.use("/api/users", orderRoutes);
 // -------------------------------------------------------------------------
 
 // Listen

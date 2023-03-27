@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import { Order } from "./order.model";
 
 export interface User {
    id: string;
@@ -7,6 +8,7 @@ export interface User {
    password: string;
    address: string;
    isAdmin: boolean;
+   orders: Order[];
 }
 
 export const UserSchema = new Schema<User>(
@@ -16,6 +18,7 @@ export const UserSchema = new Schema<User>(
       address: { type: String, required: true },
       isAdmin: { type: Boolean, required: true },
       password: { type: String, required: true },
+      orders: [{ type: Schema.Types.ObjectId, ref: "order" }],
    },
    {
       toJSON: { virtuals: true },

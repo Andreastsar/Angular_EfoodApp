@@ -38,7 +38,7 @@ const generateTokenResponse = (user: User) => {
 // Seed the data from dummy data to database
 router.get(
    "/seed",
-   asyncHandler(async (req, res, next) => {
+   asyncHandler(async (req, res) => {
       const userCount = await UserModel.countDocuments();
 
       if (userCount > 0) {
@@ -54,7 +54,7 @@ router.get(
 // User Login
 router.post(
    "/login",
-   asyncHandler(async (req, res, next) => {
+   asyncHandler(async (req, res) => {
       const { email, password } = req.body;
 
       // find the user from db
@@ -72,7 +72,7 @@ router.post(
 // User Register
 router.post(
    "/register",
-   asyncHandler(async (req, res, next) => {
+   asyncHandler(async (req, res) => {
       const { name, email, password, address } = req.body;
 
       // Check for existing user with the same email
@@ -91,6 +91,7 @@ router.post(
          password: encryptedPassword,
          address,
          isAdmin: false,
+         orders: [],
       };
 
       // Add new user to the DB

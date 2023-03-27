@@ -11,3 +11,6 @@ export const LOGIN_BY_EMAIL_PASSWORD = BASE_URL + '/api/users/login';
 
 // Register (user info)
 export const USER_REGISTRATION = BASE_URL + '/api/users/register';
+
+// New order
+export const USER_NEW_ORDER = BASE_URL + '/api/users/newOrder';

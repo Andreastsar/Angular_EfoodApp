@@ -32,6 +32,8 @@ export class CheckoutComponent implements OnInit {
     order.totalPrice = totalPrice;
     order.name = name;
     order.address = address;
-    console.log(order);
+
+    // console.log(order);
+    this.authService.makeNewOrder(order);
   }
 }

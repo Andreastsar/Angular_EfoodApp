@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -24,6 +24,7 @@ import { SearchResultsResolver } from './components/shared/search-results/search
 import { LoginComponent } from './components/auth/login/login.component';
 import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AuthInterceptor } from './components/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,16 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
       newestOnTop: true,
     }),
   ],
-  providers: [FoodItemResolver, FoodListResolver, SearchResultsResolver],
+  providers: [
+    FoodItemResolver,
+    FoodListResolver,
+    SearchResultsResolver,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -5,8 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import {
   LOGIN_BY_EMAIL_PASSWORD,
+  USER_NEW_ORDER,
   USER_REGISTRATION,
 } from 'src/app/shared/constants/url';
+import { Order } from 'src/app/shared/models/order.model';
 import { User } from 'src/app/shared/models/user.model';
 import { UserLoginI } from '../shared/interfaces/userLogin.interface';
 import { UserRegisterI } from '../shared/interfaces/userRegister.interface';
@@ -89,6 +91,12 @@ export class AuthService {
   }
 
   // -----------------------------------------------------------------------
+  // User new order
+  makeNewOrder(order: Order) {
+    this.http.post(USER_NEW_ORDER, order).subscribe();
+  }
+  // -----------------------------------------------------------------------
+
   // Logout
   userLogout() {
     this.userSubject.next(new User());
