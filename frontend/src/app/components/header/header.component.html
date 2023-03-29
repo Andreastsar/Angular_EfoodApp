@@ -33,3 +33,11 @@
     </div>
   </div>
 </nav>
+
+<div class="container" *ngIf="isLoading">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-6">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+  </div>
+</div>

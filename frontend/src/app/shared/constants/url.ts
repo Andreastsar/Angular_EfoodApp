@@ -14,3 +14,7 @@ export const USER_REGISTRATION = BASE_URL + '/api/users/register';
 
 // New order
 export const USER_NEW_ORDER = BASE_URL + '/api/users/newOrder';
+
+// Get order for Current user
+export const ORDER_NEW_FOR_USER =
+  BASE_URL + '/api/users/getCurrentOrderForUser';

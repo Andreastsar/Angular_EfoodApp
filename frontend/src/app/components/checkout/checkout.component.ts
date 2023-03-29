@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/services/cart.service';
+import { OrdersService } from 'src/app/services/orders.service';
 import { Cart } from 'src/app/shared/models/cart';
 import { Order } from 'src/app/shared/models/order.model';
 import { User } from 'src/app/shared/models/user.model';
@@ -16,7 +19,10 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private orderService: OrdersService,
+    private router: Router,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +40,8 @@ export class CheckoutComponent implements OnInit {
     order.address = address;
 
     // console.log(order);
-    this.authService.makeNewOrder(order);
+    this.orderService.createOrder(order).subscribe((result) => {
+      this.router.navigate(['/payment']);
+    });
   }
 }

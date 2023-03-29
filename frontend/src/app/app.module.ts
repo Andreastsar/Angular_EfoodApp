@@ -25,6 +25,10 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AuthInterceptor } from './components/auth/auth.interceptor';
+import { AuthGuard } from './components/auth/auth.guard';
+import { PaymentComponent } from './components/payment/payment.component';
+import { PaymentResolver } from './components/payment/payment.resolver';
+import { PaypalComponent } from './components/shared/paypal/paypal.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,8 @@ import { AuthInterceptor } from './components/auth/auth.interceptor';
     LoginComponent,
     LoadingSpinnerComponent,
     CheckoutComponent,
+    PaymentComponent,
+    PaypalComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +72,8 @@ import { AuthInterceptor } from './components/auth/auth.interceptor';
       useClass: AuthInterceptor,
       multi: true,
     },
+    AuthGuard,
+    PaymentResolver,
   ],
   bootstrap: [AppComponent],
 })

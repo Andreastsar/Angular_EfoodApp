@@ -4,10 +4,12 @@ import { AuthenticatedRequest } from "../interfaces/IAuthenticatedRequest";
 import auth from "../middlewares/auth.middleware";
 import { OrderModel } from "../models/order.model";
 import { UserModel } from "../models/user.model";
+import { OrderStatusEnum } from "../order.enum";
 
 const router = Router();
 router.use(auth);
 
+// New order
 router.post(
    "/newOrder",
    asyncHandler(async (req: AuthenticatedRequest, res) => {
@@ -27,6 +29,28 @@ router.post(
 
       user?.orders.push(order.id);
       await user?.save();
+
+      res.status(200).send(order);
+   })
+);
+
+// get order for current user (used for payment page)
+router.get(
+   "/getCurrentOrderForUser",
+   asyncHandler(async (req: AuthenticatedRequest, res) => {
+      const currentUser = req.user;
+
+      const order = await OrderModel.findOne({
+         userId: currentUser.id,
+         status: OrderStatusEnum.NEW,
+      });
+
+      // check for order existence
+      if (order) {
+         res.send(order);
+      } else {
+         res.status(400).send();
+      }
    })
 );
 

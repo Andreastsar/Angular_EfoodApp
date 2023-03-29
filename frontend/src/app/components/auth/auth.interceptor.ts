@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    if (request.url.includes('/api/users/newOrder')) {
+    if (this.auth_token) {
       const modifiedRequest = request.clone({
         headers: request.headers.append('auth_token', this.auth_token),
       });

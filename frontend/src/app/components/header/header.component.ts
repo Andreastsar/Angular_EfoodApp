@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { Cart } from 'src/app/shared/models/cart';
@@ -16,10 +17,12 @@ export class HeaderComponent implements OnInit {
   currentUser: User;
   currentUserSub: Subscription;
   isAuthenticated: boolean;
+  isLoading: boolean;
 
   constructor(
     private cartService: CartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -31,11 +34,19 @@ export class HeaderComponent implements OnInit {
       this.currentUser = user;
       this.isAuthenticated = user.token ? true : false;
     });
+
+    this.isLoading = false;
   }
 
   onLogout(): void {
+    this.isLoading = true;
+
     this.authService.userLogout();
 
     this.cartService.clearCart();
+
+    this.router.navigate(['/home']);
+
+    this.isLoading = false;
   }
 }
